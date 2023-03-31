@@ -9,11 +9,9 @@ import SingleUser from "./SingleUser";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/post/:id" element={<SingleUser />} />
-        <Route path="*" element={<Error />} />
-      </Routes>
+    
+       <App/>
+   
     </BrowserRouter>
   </React.StrictMode>
 );

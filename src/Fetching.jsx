@@ -1,14 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-const Fetching = () => {
+const Fetching = (props) => {
   const [data, setData] = useState([]);
 
   //!axios method
   const fetch = () => {
     axios
       .get("https://jsonplaceholder.typicode.com/users")
-      .then((res) => setData(res.data))
+      .then((res) => props.setData(res.data))
       .catch((err) => console.log(err));
   };
 
@@ -16,7 +16,7 @@ const Fetching = () => {
   const fetch2 = () => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => res.json())
-      .then((res) => setData(res));
+      .then((res) => props.setData(res));
   };
   //!async await method
   const fetch3 = () => {
@@ -25,7 +25,7 @@ const Fetching = () => {
         const result = await axios.get(
           "https://jsonplaceholder.typicode.com/users"
         );
-        setData(result.data);
+        props.setData(result.data);
       } catch (error) {
         console.log(error);
       }
@@ -36,7 +36,7 @@ const Fetching = () => {
     const fetch = () => {
       axios
         .get("https://jsonplaceholder.typicode.com/users")
-        .then((res) => setData(res.data))
+        .then((res) => props.setData(res.data))
         .catch((err) => console.log(err));
     };
     fetch();
@@ -45,13 +45,13 @@ const Fetching = () => {
   return (
     // <h1>a</h1>
     <ul>
-      {data.map((val, i) => (
+      {props.data.map((val, i) => (
         <>
-          <Link to={`/post/${val.id}`}>
-            <li key={i}>{val.name}</li>
+          <Link to={`/post/${val.id}`} key={i}>
+            <li>{val.name}</li>
           </Link>
 
-          <li key={i}>
+          <li>
             <i> {val.email}</i>
           </li>
         </>
